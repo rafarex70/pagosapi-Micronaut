@@ -1,0 +1,23 @@
+micronaut:
+  application:
+    name: pagosapi
+    router:
+      static-resources:
+        swagger:
+          paths: classpath:META-INF/swagger
+          mapping: /swagger/**
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5434/pagosdb
+    driverClassName: org.postgresql.Driver
+    username: admin
+    password: admin
+    schema-generate: CREATE_DROP
+    dialect: POSTGRES
+jpa.default.properties.hibernate.hbm2ddl.auto: update
+netty:
+  default:
+    allocator:
+      max-order: 3
+
+

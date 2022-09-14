@@ -1,0 +1,68 @@
+plugins {
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("io.micronaut.application") version "3.5.3"
+    id("com.google.cloud.tools.jib") version "2.8.0"
+    id("io.micronaut.test-resources") version "3.5.3"
+}
+
+version = "0.1"
+group = "com.example"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("io.micronaut.data:micronaut-data-processor")
+    annotationProcessor("io.micronaut:micronaut-http-validation")
+    annotationProcessor("io.micronaut.openapi:micronaut-openapi")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-jackson-databind")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("io.swagger.core.v3:swagger-annotations")
+    implementation("jakarta.annotation:jakarta.annotation-api")
+    compileOnly("org.projectlombok:lombok")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    runtimeOnly("org.postgresql:postgresql")
+    testImplementation("org.assertj:assertj-core")
+    testImplementation("org.testcontainers:junit-jupiter")
+    testImplementation("org.testcontainers:postgresql")
+    testImplementation("org.testcontainers:testcontainers")
+    implementation("io.micronaut:micronaut-validation")
+
+    testImplementation("org.hamcrest:hamcrest")
+
+    testImplementation("org.mockito:mockito-core")
+
+}
+
+
+application {
+    mainClass.set("com.example.Application")
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
+}
+
+tasks {
+    jib {
+        to {
+            image = "gcr.io/myapp/jib-image"
+        }
+    }
+}
+graalvmNative.toolchainDetection = false
+micronaut {
+    runtime("netty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("com.example.*")
+    }
+}
+
+
+
