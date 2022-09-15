@@ -8,7 +8,7 @@ micronaut:
           mapping: /swagger/**
 datasources:
   default:
-    url: jdbc:postgresql://localhost:5434/pagosdb
+    url: ${JDBC_URL:'jdbc:postgresql://localhost:5434/pagosdb'}
     driverClassName: org.postgresql.Driver
     username: admin
     password: admin

@@ -3,7 +3,15 @@ version: '3'
 
 # Creamos los servicios
 services:
-  mydb:                                 # Creamos el servicios mydb para identificar la imagen
+  web:
+    image: pagosapi
+    ports:
+      - 8080:8080
+    environment:
+      JDBC_URL: jdbc:postgresql://db:5432/pagosdb
+    depends_on:
+      - db
+  db:                                 # Creamos el servicios mydb para identificar la imagen
     image: postgres:14.5                # Usamos la imagen postgresql en la versión 12
     volumes:
       - ${PWD}/postgresdb:/var/lib/postgresql  # Crearemos un volumen para almacenar los datos de la db

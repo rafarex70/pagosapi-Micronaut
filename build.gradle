@@ -49,8 +49,11 @@ java {
 
 tasks {
     jib {
+        from {
+            image "adoptopenjdk/openjdk:17-jdk-slim"
+        }
         to {
-            image = "gcr.io/myapp/jib-image"
+            image = "rafarex70/pagosapi"
         }
     }
 }

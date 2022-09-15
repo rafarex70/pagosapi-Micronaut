@@ -57,3 +57,15 @@
 - [Micronaut Test Resources documentation](https://micronaut-projects.github.io/micronaut-test-resources/latest/guide/)
 
 
+## How to Build Docker Image
+
+```sh
+  ./gradlew dockerBuild
+```
+
+## How to Run with Docker Compose
+
+```sh
+  cd k8s
+  docker-compose up -d
+```
