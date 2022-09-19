@@ -6,6 +6,9 @@ micronaut:
         swagger:
           paths: classpath:META-INF/swagger
           mapping: /swagger/**
+  server:
+    cors:
+      enabled: true
 datasources:
   default:
     url: ${JDBC_URL:'jdbc:postgresql://localhost:5434/pagosdb'}
